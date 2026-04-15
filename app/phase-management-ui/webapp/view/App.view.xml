@@ -1,7 +1,21 @@
 <mvc:View controllerName="phasemanagementui.controller.App"
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
     xmlns="sap.m">
     <App id="app">
+        <f:FlexibleColumnLayout
+        id="layout"
+        layout="OneColumn"
+        backgroundDesign="Translucent">
+            <f:beginColumnPages>
+                <mvc:XMLView id="beginView" viewName="phasemanagementui.view.Main"/>
+            </f:beginColumnPages>
+            <f:midColumnPages>
+                <mvc:XMLView id="detailView" viewName="phasemanagementui.view.Details"/>
+            </f:midColumnPages>
+            <f:endColumnPages>
+            </f:endColumnPages>
+      </f:FlexibleColumnLayout>
     </App>
 </mvc:View>

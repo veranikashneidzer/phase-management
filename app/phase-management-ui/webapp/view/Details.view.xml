@@ -1,0 +1,54 @@
+<mvc:View
+	controllerName="phasemanagementui.controller.Details"
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout">
+	<semantic:SemanticPage
+		id="detailPage"
+		showFooter="{= ${oDetailConfigModel>/isEditMode} || ${oDetailConfigModel>/isOrderCreation} }"
+		>
+		<semantic:titleHeading>
+			<Title
+                id="orderTitle"
+				text="{= ${oDetailConfigModel>/isOrderCreation} ? ${i18n>addNewOrder} : 'Order ' + ${DataV2>OrderID}}"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+
+		</semantic:headerContent>
+		<semantic:content>
+
+		</semantic:content>
+
+		<semantic:deleteAction>
+			<semantic:DeleteAction
+				press=".onDeleteOrder"/>
+		</semantic:deleteAction>
+		<semantic:editAction>
+			<semantic:EditAction
+				visible="{= !${oDetailConfigModel>/isEditMode}}"
+				press=".onEditOrder"/>
+		</semantic:editAction>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press=".onSendEmail"/>
+		</semantic:sendEmailAction>
+		<semantic:closeAction>
+			<semantic:CloseAction
+				id="closeColumn"
+				press=".onCloseOrder"/>
+		</semantic:closeAction>
+
+		<semantic:footerCustomActions>
+			<Button
+				text="Save"
+				press=".onSaveButtonPress"/>
+			<Button
+				text="Cancel"
+				press=".onCancelEdit"/>
+		</semantic:footerCustomActions>
+	</semantic:SemanticPage>
+</mvc:View>
