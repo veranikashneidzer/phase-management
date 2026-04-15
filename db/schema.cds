@@ -2,29 +2,29 @@ using {cuid} from '@sap/cds/common';
 
 namespace sap.phaseManagement;
 
-entity Customer : cuid {
+entity Customers : cuid {
       name          : String                       @mandatory;
       accountNumber : String                       @unique;
-      contracts     : Composition of many Contract
+      contracts     : Composition of many Contracts
                         on contracts.customer = $self;
 }
 
-entity Contract : cuid {
+entity Contracts : cuid {
       description : String;
       startDate   : Date;
       endDate     : Date;
       currency    : String default 'EUR';
       status      : String enum {Active; Inactive; Draft};
-      customer    : Association to Customer;
-      phases      : Composition of many Phase
+      customer    : Association to Customers;
+      phases      : Composition of many Phases
                         on phases.contract = $self;
 }
 
-entity Phase : cuid {
+entity Phases : cuid {
       name         : String                       @mandatory;
       startDate    : Date                         @mandatory;
       endDate      : Date                         @mandatory;
       monthlyPrice : Decimal(15,2);
       description  : String;
-      contract     : Association to Contract;
+      contract     : Association to Contracts;
 }

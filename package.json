@@ -1,5 +1,5 @@
 {
-  "name": "phaseManagement",
+  "name": "Phase Management",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "https://github.com/veranikashneidzer/phase-management",
@@ -19,7 +19,7 @@
     "watch": "cds watch",
     "deploy": "cds deploy",
     "watch:debug": "node --inspect=9229 ./node_modules/@sap/cds/bin/cds.js watch",
-    "watch-crc-ui": "cds watch --open crcui/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-phase-management-ui": "cds watch --open phasemanagementui/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "workspaces": [
     "app/*"

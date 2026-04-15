@@ -1,3 +1,3 @@
 module.exports = (srv) => {
-  const { Customer, Contract, Phase } = cds.entities("PhaseManagementService");
+  const { Customers, Contracts, Phases } = cds.entities("PhaseManagementService");
 }
