@@ -1,0 +1,276 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### Customer
+# @name Customer_GET
+GET {{server}}/odata/v4/phase-management/Customer
+Authorization: Basic {{username}}:{{password}}
+
+
+### Customer
+# @name Customer_POST
+POST {{server}}/odata/v4/phase-management/Customer
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "48973690-b4db-4b32-9553-c8ea6d9d82e8",
+  "name": "name-4897369",
+  "accountNumber": "accountNumber-4897369",
+  "contracts": [
+    {
+      "ID": "20621761-0b5e-4653-a89d-35e59eb30ab6",
+      "description": "description-20621761",
+      "startDate": "2019-08-11",
+      "endDate": "2009-11-04",
+      "currency": "currency-20621761",
+      "status": "Draft",
+      "phases": [
+        {
+          "ID": "22416086-f2cd-4aaf-9d99-c8d96d9ed91a",
+          "name": "name-22416086",
+          "startDate": "2010-11-14",
+          "endDate": "2014-09-17",
+          "monthlyPrice": 9615957503455.43,
+          "description": "description-22416086"
+        },
+        {
+          "ID": "22416087-1f18-40d4-b834-586f44e20011",
+          "name": "name-22416087",
+          "startDate": "2009-02-26",
+          "endDate": "2001-01-12",
+          "monthlyPrice": 4847400386686.22,
+          "description": "description-22416087"
+        }
+      ]
+    },
+    {
+      "ID": "20621762-d9cd-44e4-9451-7f7410eb0b3c",
+      "description": "description-20621762",
+      "startDate": "2010-02-07",
+      "endDate": "2007-11-07",
+      "currency": "currency-20621762",
+      "status": "Inactive",
+      "phases": [
+        {
+          "ID": "9508791b-6205-4da1-80eb-3193d0e49fa8",
+          "name": "name-9508791",
+          "startDate": "2021-10-29",
+          "endDate": "2020-04-29",
+          "monthlyPrice": 725269713476.63,
+          "description": "description-9508791"
+        },
+        {
+          "ID": "95087927-7481-4fda-905f-87ba9b212cd9",
+          "name": "name-9508792",
+          "startDate": "2019-01-24",
+          "endDate": "2020-11-10",
+          "monthlyPrice": 1411602598373.98,
+          "description": "description-9508792"
+        }
+      ]
+    }
+  ]
+}
+
+
+### Customer
+# @name Customer_PATCH
+PATCH {{server}}/odata/v4/phase-management/Customer/48973690-b4db-4b32-9553-c8ea6d9d82e8
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "48973690-b4db-4b32-9553-c8ea6d9d82e8",
+  "name": "name-4897369",
+  "accountNumber": "accountNumber-4897369",
+  "contracts": [
+    {
+      "ID": "20621761-0b5e-4653-a89d-35e59eb30ab6",
+      "description": "description-20621761",
+      "startDate": "2019-08-11",
+      "endDate": "2009-11-04",
+      "currency": "currency-20621761",
+      "status": "Draft",
+      "phases": [
+        {
+          "ID": "22416086-f2cd-4aaf-9d99-c8d96d9ed91a",
+          "name": "name-22416086",
+          "startDate": "2010-11-14",
+          "endDate": "2014-09-17",
+          "monthlyPrice": 9615957503455.43,
+          "description": "description-22416086"
+        },
+        {
+          "ID": "22416087-1f18-40d4-b834-586f44e20011",
+          "name": "name-22416087",
+          "startDate": "2009-02-26",
+          "endDate": "2001-01-12",
+          "monthlyPrice": 4847400386686.22,
+          "description": "description-22416087"
+        }
+      ]
+    },
+    {
+      "ID": "20621762-d9cd-44e4-9451-7f7410eb0b3c",
+      "description": "description-20621762",
+      "startDate": "2010-02-07",
+      "endDate": "2007-11-07",
+      "currency": "currency-20621762",
+      "status": "Inactive",
+      "phases": [
+        {
+          "ID": "9508791b-6205-4da1-80eb-3193d0e49fa8",
+          "name": "name-9508791",
+          "startDate": "2021-10-29",
+          "endDate": "2020-04-29",
+          "monthlyPrice": 725269713476.63,
+          "description": "description-9508791"
+        },
+        {
+          "ID": "95087927-7481-4fda-905f-87ba9b212cd9",
+          "name": "name-9508792",
+          "startDate": "2019-01-24",
+          "endDate": "2020-11-10",
+          "monthlyPrice": 1411602598373.98,
+          "description": "description-9508792"
+        }
+      ]
+    }
+  ]
+}
+
+
+### Customer
+# @name Customer_DELETE
+DELETE {{server}}/odata/v4/phase-management/Customer/48973690-b4db-4b32-9553-c8ea6d9d82e8
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Contract
+# @name Contract_GET
+GET {{server}}/odata/v4/phase-management/Contract
+Authorization: Basic {{username}}:{{password}}
+
+
+### Contract
+# @name Contract_POST
+POST {{server}}/odata/v4/phase-management/Contract
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "20621761-0b5e-4653-a89d-35e59eb30ab6",
+  "description": "description-20621761",
+  "startDate": "2019-08-11",
+  "endDate": "2009-11-04",
+  "currency": "currency-20621761",
+  "status": "Draft",
+  "phases": [
+    {
+      "ID": "22416086-f2cd-4aaf-9d99-c8d96d9ed91a",
+      "name": "name-22416086",
+      "startDate": "2010-11-14",
+      "endDate": "2014-09-17",
+      "monthlyPrice": 9615957503455.43,
+      "description": "description-22416086"
+    },
+    {
+      "ID": "22416087-1f18-40d4-b834-586f44e20011",
+      "name": "name-22416087",
+      "startDate": "2009-02-26",
+      "endDate": "2001-01-12",
+      "monthlyPrice": 4847400386686.22,
+      "description": "description-22416087"
+    }
+  ]
+}
+
+
+### Contract
+# @name Contract_PATCH
+PATCH {{server}}/odata/v4/phase-management/Contract/20621761-0b5e-4653-a89d-35e59eb30ab6
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "20621761-0b5e-4653-a89d-35e59eb30ab6",
+  "description": "description-20621761",
+  "startDate": "2019-08-11",
+  "endDate": "2009-11-04",
+  "currency": "currency-20621761",
+  "status": "Draft",
+  "phases": [
+    {
+      "ID": "22416086-f2cd-4aaf-9d99-c8d96d9ed91a",
+      "name": "name-22416086",
+      "startDate": "2010-11-14",
+      "endDate": "2014-09-17",
+      "monthlyPrice": 9615957503455.43,
+      "description": "description-22416086"
+    },
+    {
+      "ID": "22416087-1f18-40d4-b834-586f44e20011",
+      "name": "name-22416087",
+      "startDate": "2009-02-26",
+      "endDate": "2001-01-12",
+      "monthlyPrice": 4847400386686.22,
+      "description": "description-22416087"
+    }
+  ]
+}
+
+
+### Contract
+# @name Contract_DELETE
+DELETE {{server}}/odata/v4/phase-management/Contract/20621761-0b5e-4653-a89d-35e59eb30ab6
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Phase
+# @name Phase_GET
+GET {{server}}/odata/v4/phase-management/Phase
+Authorization: Basic {{username}}:{{password}}
+
+
+### Phase
+# @name Phase_POST
+POST {{server}}/odata/v4/phase-management/Phase
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "22416086-f2cd-4aaf-9d99-c8d96d9ed91a",
+  "name": "name-22416086",
+  "startDate": "2010-11-14",
+  "endDate": "2014-09-17",
+  "monthlyPrice": 9615957503455.43,
+  "description": "description-22416086"
+}
+
+
+### Phase
+# @name Phase_PATCH
+PATCH {{server}}/odata/v4/phase-management/Phase/22416086-f2cd-4aaf-9d99-c8d96d9ed91a
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "22416086-f2cd-4aaf-9d99-c8d96d9ed91a",
+  "name": "name-22416086",
+  "startDate": "2010-11-14",
+  "endDate": "2014-09-17",
+  "monthlyPrice": 9615957503455.43,
+  "description": "description-22416086"
+}
+
+
+### Phase
+# @name Phase_DELETE
+DELETE {{server}}/odata/v4/phase-management/Phase/22416086-f2cd-4aaf-9d99-c8d96d9ed91a
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
