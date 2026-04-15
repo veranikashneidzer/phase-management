@@ -17,8 +17,7 @@
 						path: 'DataModel>ID',
 						descending: true
 					}
-				}"
-				updateFinished="onContractsListUpdateFinished">
+				}">
 				<headerToolbar>
 					<OverflowToolbar>
 						<SearchField
@@ -58,7 +57,10 @@
 						number="{DataModel>currency}"
 						type="Navigation"
 						key="{DataModel>ID}"
-						press=".onSelectContract">
+						press=".onSelectContract"
+						core:require="{
+							Formatter: 'phasemanagementui/model/formatter'
+						}">
 						<firstStatus>
 								<ObjectStatus
 									core:require="{

@@ -1,0 +1,41 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <ViewSettingsDialog
+		id="viewSettingsDialog"
+        title="{i18n>viewSettingsTitle}"
+		
+		confirm=".onConfirmViewSettingsDialog">
+		<filterItems>
+			<ViewSettingsFilterItem
+				id="filterItems"
+				text="{i18n>filterByStatus}"
+				key="statusFilter"
+				multiSelect="false">
+				<items>
+					<ViewSettingsItem
+						text="{i18n>onlyActiveContracts}"
+						key="activeContracts"/>
+					<ViewSettingsItem
+						text="{i18n>onlyInactiveContracts}"
+						key="inactiveContracts"/>
+					<ViewSettingsItem
+						text="{i18n>onlyDraftContracts}"
+						key="draftContracts"/>
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+		<groupItems>
+			<ViewSettingsItem
+				text="{i18n>groupByCurrency}"
+				key="currency"/>
+			<ViewSettingsItem
+				text="{i18n>groupByStartDate}"
+				key="startDate"/>
+			<ViewSettingsItem
+				text="{i18n>groupByEndDate}"
+				key="endDate"/>
+		</groupItems>
+	</ViewSettingsDialog>
+</c:FragmentDefinition>

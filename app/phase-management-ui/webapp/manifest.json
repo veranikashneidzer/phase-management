@@ -82,8 +82,8 @@
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
-        "controlAggregation": "pages",
-        "controlId": "app",
+        "controlAggregation": "beginColumnPages",
+        "controlId": "layout",
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
@@ -93,18 +93,30 @@
       },
       "routes": [
         {
-          "name": "RoutePhaseManagementUI",
-          "pattern": ":?query:",
-          "target": [
-            "TargetPhaseManagementUI"
-          ]
-        }
+					"pattern": "",
+					"name": "RouteMain",
+					"target": "TargetMain"
+				},
+        {
+					"pattern": "Contract/{contractId}:?query:",
+					"name": "contract",
+					"target": [
+						"TargetMain",
+						"contract"
+					]
+				}
       ],
       "targets": {
-        "TargetPhaseManagementUI": {
-          "id": "PhaseManagementUI",
-          "name": "PhaseManagementUI"
-        }
+        "TargetMain": {
+					"name": "Main",
+					"id": "Main"
+				},
+        "contract": {
+					"name": "Details",
+					"id": "details",
+					"level": 1,
+					"controlAggregation": "midColumnPages"
+				}
       }
     },
     "rootView": {

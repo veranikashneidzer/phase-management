@@ -6,7 +6,7 @@
     <App id="app">
         <f:FlexibleColumnLayout
         id="layout"
-        layout="OneColumn"
+        layout="{oAppModel>/layout}"
         backgroundDesign="Translucent">
             <f:beginColumnPages>
                 <mvc:XMLView id="beginView" viewName="phasemanagementui.view.Main"/>

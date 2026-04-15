@@ -16,134 +16,120 @@ sap.ui.define([
   "use strict";
 
   return BaseController.extend("phasemanagementui.controller.Main", {
-  //   onInit() {
-  //     this.configModel = this.getConfigModel();
-  //     this.oDataV2Model = this.getOwnerComponent().getModel("DataV2");
-  //     this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+    onInit() {
+      this.oDataModel = this.getOwnerComponent().getModel("DataModel");
+      this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 
-  //     this.configModel = new JSONModel({
-  //       ordersCounter: this.oDataV2Model.getProperty("/Orders")?.length || 0,
-  //     });
+      this.configModel = new JSONModel({});
+      this.getView().setModel(this.configModel, "configModel");
 
-  //     this.getView().setModel(this.configModel, "configModel");
+      this.mGroupFunctions = {
+        currency: function (oContext) {
+          const sCurrency = oContext.getProperty("currency");
+          return {
+            key: sCurrency,
+            text: sCurrency
+          };
+        },
+        startDate: function (oContext) {
+          const oDate = (new Date(oContext.getProperty("startDate")));
+          const iYear = oDate.getFullYear();
+          const iMonth = oDate.getMonth() + 1;
+          const sMonthName = DateFormat.getInstance({ pattern: "MMMM" }).format(oDate);
+          return {
+            key: iYear + "-" + iMonth,
+            text: `Start date in ${sMonthName} ${iYear}`
+          };
+        },
+        endDate: function (oContext) {
+          const oDate = (new Date(oContext.getProperty("endDate")));
+          const iYear = oDate.getFullYear();
+            const iMonth = oDate.getMonth() + 1;
+            const sMonthName = DateFormat.getInstance({ pattern: "MMMM" }).format(oDate);
+            return {
+              key: iYear + "-" + iMonth,
+              text: `End date in ${sMonthName} ${iYear}`
+            };
+        }
+      };
+    },
 
-  //     this.mGroupFunctions = {
-  //       CustomerName: function (oContext) {
-  //         const sCustomerName = oContext.getProperty("CustomerName");
-  //         return {
-  //           key: sCustomerName,
-  //           text: sCustomerName
-  //         };
-  //       },
-  //       OrderDate: function (oContext) {
-  //         const oDate = oContext.getProperty("OrderDate");
-  //         const iYear = oDate.getFullYear();
-  //         const iMonth = oDate.getMonth() + 1;
-  //         const sMonthName = DateFormat.getInstance({ pattern: "MMMM" }).format(oDate);
-  //         return {
-  //           key: iYear + "-" + iMonth,
-  //           text: `Ordered in ${sMonthName} ${iYear}`
-  //         };
-  //       },
-  //       ShippedDate: function (oContext) {
-  //         const oDate = oContext.getProperty("ShippedDate");
-  //         if (oDate != null) {
-  //           const iYear = oDate.getFullYear();
-  //           const iMonth = oDate.getMonth() + 1;
-  //           const sMonthName = DateFormat.getInstance({ pattern: "MMMM" }).format(oDate);
-  //           return {
-  //             key: iYear + "-" + iMonth,
-  //             text: `Shipped in ${sMonthName} ${iYear}`
-  //           };
-  //         } else {
-  //           return {
-  //             key: 0,
-  //             text: "Not Shipped Yet"
-  //           };
-  //         }
-  //       }
-  //     };
-  //   },
+    onSearchContracts(oEvent) {
+      const sQuery = oEvent?.getSource()?.getValue();
+      const oBinding = this.byId("contractsList").getBinding("items");
+      const aFilters = sQuery ? [
+        new Filter("description", FilterOperator.Contains, sQuery)
+      ] : [];
 
-  //   onOrdersListUpdateFinished() {
-  //     const ordersCount = this.byId("listOfOrders").getItems().length;
-  //     this.configModel.setProperty("/ordersCounter", ordersCount);
-  //   },
+      oBinding.filter(aFilters);
+    },
 
-  //   onSearchOrders(oEvent) {
-  //     const sQuery = oEvent.getSource().getValue();
-  //     const oBinding = this.byId("listOfOrders").getBinding("items");
-  //     const aFilters = sQuery ? [
-  //       new Filter("CustomerName", FilterOperator.Contains, sQuery)
-  //     ] : [];
+    async onOpenViewSettings(oEvent) {
+      const sTabId = oEvent.getSource().getId().split("--").pop();
+      try {
+        if (!this.oViewSettingsDialog) {
+          this.oViewSettingsDialog ??= await this.loadFragment({
+            name: "phasemanagementui.view.fragments.ViewSettingsDialog",
+            id: 'viewSettingsDialog',
+          });
+        }
 
-  //     oBinding.filter(aFilters);
-  //   },
+        this.oViewSettingsDialog.open(sTabId === "groupButton" ? "group" : "filter");
+      } catch (error) {
+        Log.error("Cannot load view settings dialog", error);
+      }
+    },
 
-  //   async onOpenViewSettings(oEvent) {
-  //     const sTabId = oEvent.getSource().getId().split("--").pop();
-  //     try {
-  //       if (!this.oViewSettingsDialog) {
-  //         this.oViewSettingsDialog ??= await this.loadFragment({
-  //           name: "project1.view.fragments.ViewSettingsDialog",
-  //           id: 'viewSettingsDialog',
-  //         });
-  //       }
+    onConfirmViewSettingsDialog(oEvent) {
+      const oViewSettingsDialog = this.oViewSettingsDialog;
+      const oList = this.byId("contractsList");
+      const oBinding = oList.getBinding("items");
 
-  //       this.oViewSettingsDialog.open(sTabId === "groupButton" ? "group" : "filter");
-  //     } catch (error) {
-  //       Log.error("Cannot load view settings dialog", error);
-  //     }
-  //   },
+      const sSortPath = oViewSettingsDialog.getSelectedFilterItems()[0]?.getKey() || "";
+      if (sSortPath === "activeContracts") {
+        oBinding.filter([new Filter("status", FilterOperator.EQ, 'Active')]);
+      } else if (sSortPath === "inactiveContracts") {
+        oBinding.filter([new Filter("status", FilterOperator.EQ, 'Inactive')]);
+      } else if (sSortPath === "draftContracts") {
+        oBinding.filter([new Filter("status", FilterOperator.EQ, 'Draft')]);
+      } else {
+        oBinding.filter([]);
+      }
 
-  //   onConfirmViewSettingsDialog(oEvent) {
-  //     const oViewSettingsDialog = this.oViewSettingsDialog;
-  //     const oList = this.byId("listOfOrders");
-  //     const oBinding = oList.getBinding("items");
+      const mParams = oEvent.getParameters();
 
-  //     const sSortPath = oViewSettingsDialog.getSelectedFilterItems()[0]?.getKey() || "";
-  //     if (sSortPath === "notShippedFilter") {
-  //       oBinding.filter([new Filter("ShippedDate", FilterOperator.EQ, null)]);
-  //     } else if (sSortPath === "shippedFilter") {
-  //       oBinding.filter([new Filter("ShippedDate", FilterOperator.NE, null)]);
-  //     } else {
-  //       oBinding.filter([]);
-  //     }
+      if (mParams.groupItem) {
+        const aGroups = [];
+        const sPath = mParams.groupItem.getKey();
+        const bDescending = mParams.groupDescending;
+        const vGroup = this.mGroupFunctions[sPath];
+        aGroups.push(new Sorter(sPath, bDescending, vGroup));
 
-  //     const mParams = oEvent.getParameters();
+        oBinding.sort(aGroups);
+      } else {
+        oBinding.sort([]);
+      }
 
-  //     if (mParams.groupItem) {
-  //       const aGroups = [];
-  //       const sPath = mParams.groupItem.getKey();
-  //       const bDescending = mParams.groupDescending;
-  //       const vGroup = this.mGroupFunctions[sPath];
-  //       aGroups.push(new Sorter(sPath, bDescending, vGroup));
+      // this.onSearchContracts(oEvent);
+    },
 
-  //       oBinding.sort(aGroups);
-  //     } else {
-  //       oBinding.sort([]);
-  //     }
-
-  //     this.onSearchOrders(oEvent);
-  //   },
-
-  //   onSelectOrder(oEvent) {
-  //     const oList = this.byId("listOfOrders");
-  //     const oBinding = oList.getBinding("items");
-  //     const nListOrderId = oEvent.getSource().getId().split("-").pop();
+    onSelectContract(oEvent) {
+      const oList = this.byId("contractsList");
+      const oBinding = oList.getBinding("items");
+      const nListContractId = oEvent.getSource().getId().split("-").pop();
         
-  //     this.getView().getModel("oAppModel").setProperty("/layout", "TwoColumnsMidExpanded");
-  //     this.getOwnerComponent().getRouter().navTo("object", {
-  //       objectId : oBinding.getContextByIndex(nListOrderId).getObject().OrderID
-  //     });
-  //   },
+      this.getView().getModel("oAppModel").setProperty("/layout", "TwoColumnsMidExpanded");
+      this.getOwnerComponent().getRouter().navTo("contract", {
+        contractId :oBinding.getCurrentContexts()[nListContractId].getObject().ID
+      });
+    },
 
-  //   onAddOrder() {
-  //     this.getView().getModel("oAppModel").setProperty("/layout", "TwoColumnsMidExpanded");
+    onAddContract() {
+      this.getView().getModel("oAppModel").setProperty("/layout", "TwoColumnsMidExpanded");
 
-  //     this.getOwnerComponent().getRouter().navTo("object", {
-  //       objectId: "newOrder",
-  //     });
-  //   }
+      this.getOwnerComponent().getRouter().navTo("contract", {
+        contractId: "newContract",
+      });
+    }
   })
 });;
