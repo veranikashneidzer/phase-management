@@ -1,0 +1,43 @@
+
+ID,name,startDate,endDate,monthlyPrice,description,contract_ID
+phs_001,Onboarding,2025-01-01,2025-01-31,2500.00,Project onboarding,ctr_001
+phs_002,Implementation,2025-02-01,2025-06-30,4200.00,System implementation,ctr_001
+phs_003,Support,2025-07-01,2025-12-31,1800.00,Operational support,ctr_001
+phs_004,Assessment,2025-03-01,2025-03-31,3000.00,Readiness assessment,ctr_002
+phs_005,Migration,2025-04-01,2025-08-31,5200.00,Cloud migration,ctr_002
+phs_006,Stabilization,2024-06-01,2024-08-31,1600.00,Post-go-live stabilization,ctr_003
+phs_007,Maintenance,2024-09-01,2025-05-31,1500.00,Application maintenance,ctr_003
+phs_008,Design,2025-02-01,2025-03-31,2800.00,Solution design,ctr_004
+phs_009,Build,2025-04-01,2025-09-30,4600.00,Platform build,ctr_004
+phs_010,Rollout,2025-10-01,2025-11-30,2200.00,Production rollout,ctr_004
+phs_011,Blueprinting,2025-01-15,2025-03-15,3500.00,ERP blueprinting,ctr_005
+phs_012,Development,2025-03-16,2025-10-31,5000.00,ERP development,ctr_005
+phs_013,Go-live support,2025-11-01,2026-01-14,2000.00,Go-live assistance,ctr_005
+phs_014,Hardware setup,2025-04-01,2025-05-31,4000.00,IoT device setup,ctr_007
+phs_015,Platform build,2025-06-01,2025-10-31,4800.00,IoT platform development,ctr_007
+phs_016,Monitoring,2025-11-01,2025-12-31,2200.00,Monitoring & alerts,ctr_007
+phs_017,Discovery,2025-01-01,2025-02-28,2600.00,Process discovery,ctr_009
+phs_018,Optimization,2025-03-01,2025-08-31,3900.00,Process optimization,ctr_009
+phs_019,Reporting,2025-09-01,2025-10-31,1800.00,Reporting setup,ctr_009
+phs_020,System integration,2025-01-01,2025-06-30,5100.00,System integration,ctr_011
+phs_021,Testing,2025-07-01,2025-09-30,2300.00,Integration testing,ctr_011
+phs_022,Support,2025-10-01,2025-12-31,1900.00,Operational support,ctr_011
+phs_023,Data extraction,2025-03-01,2025-04-30,3200.00,Legacy data extraction,ctr_012
+phs_024,Data load,2025-05-01,2025-07-31,3600.00,Migration execution,ctr_012
+phs_025,Validation,2025-08-01,2025-08-31,2000.00,Data validation,ctr_012
+phs_026,Architecture design,2025-01-01,2025-03-31,5200.00,Target architecture design,ctr_013
+phs_027,Core build,2025-04-01,2026-02-28,6100.00,Core platform build,ctr_013
+phs_028,Rollout,2026-03-01,2026-06-30,2400.00,Multi-country rollout,ctr_013
+phs_029,Implementation,2025-02-15,2025-10-31,4300.00,Compliance implementation,ctr_014
+phs_030,Audit support,2025-11-01,2025-12-15,2100.00,Audit assistance,ctr_014
+phs_031,Network planning,2025-01-01,2025-03-31,4700.00,Network planning,ctr_015
+phs_032,Deployment,2025-04-01,2025-09-30,5600.00,5G deployment,ctr_015
+phs_033,Optimization,2025-10-01,2025-12-31,2500.00,Performance tuning,ctr_015
+phs_034,Edge automation,2025-02-01,2025-07-31,4800.00,Factory automation setup,ctr_017
+phs_035,Monitoring,2025-08-01,2025-11-30,2200.00,Production monitoring,ctr_017
+phs_036,Content setup,2025-01-15,2025-05-31,3400.00,Content platform setup,ctr_019
+phs_037,Training,2025-06-01,2025-08-31,1800.00,User training,ctr_019
+phs_038,Support,2025-09-01,2025-10-15,1500.00,Platform support,ctr_019
+phs_039,Integration design,2025-03-01,2025-04-30,3000.00,Integration design,ctr_020
+phs_040,Implementation,2025-05-01,2025-06-30,4200.00,Integration build,ctr_020
+phs_041,Testing,2025-07-01,2025-07-31,2000.00,Integration testing,ctr_020
