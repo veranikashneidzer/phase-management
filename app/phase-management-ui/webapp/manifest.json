@@ -98,7 +98,7 @@
 					"target": "TargetMain"
 				},
         {
-					"pattern": "Contract/{contractId}:?query:",
+					"pattern": "contract/{contractId}:?query:",
 					"name": "contract",
 					"target": [
 						"TargetMain",

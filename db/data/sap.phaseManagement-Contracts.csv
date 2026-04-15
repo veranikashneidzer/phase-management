@@ -1,21 +1,22 @@
+
 ID,description,startDate,endDate,currency,status,customer_ID
-ctr_001,Enterprise support contract,2025-01-01,2025-12-31,EUR,Active,cst_001
-ctr_002,Cloud migration services,2025-03-01,2025-09-30,USD,Active,cst_001
-ctr_003,Application maintenance,2024-06-01,2025-05-31,EUR,Inactive,cst_002
-ctr_004,Data analytics rollout,2025-02-01,2025-11-30,USD,Active,cst_002
-ctr_005,ERP implementation,2025-01-15,2026-01-14,EUR,Active,cst_003
-ctr_006,Retail POS modernization,2024-10-01,2025-09-30,USD,Inactive,cst_003
-ctr_007,IoT platform development,2025-04-01,2025-12-31,EUR,Active,cst_004
-ctr_008,Security audit program,2025-02-01,2025-04-30,EUR,Inactive,cst_004
-ctr_009,Logistics optimization project,2025-01-01,2025-10-31,EUR,Active,cst_005
-ctr_010,Fleet tracking system,2025-05-01,2025-12-31,EUR,Draft,cst_005
-ctr_011,Hospital system integration,2025-01-01,2025-12-31,BYN,Active,cst_006
-ctr_012,Patient data migration,2025-03-01,2025-08-31,EUR,Active,cst_006
-ctr_013,Core banking upgrade,2025-01-01,2026-06-30,EUR,Active,cst_007
-ctr_014,Regulatory compliance project,2025-02-15,2025-12-15,EUR,Active,cst_007
-ctr_015,5G network expansion,2025-01-01,2025-12-31,EUR,Active,cst_008
-ctr_016,Customer billing transformation,2025-04-01,2025-09-30,EUR,Draft,cst_008
-ctr_017,Factory automation rollout,2025-02-01,2025-11-30,RUB,Active,cst_009
-ctr_018,Supply chain analytics,2024-09-01,2025-06-30,EUR,Inactive,cst_009
-ctr_019,Content management platform,2025-01-15,2025-10-15,EUR,Active,cst_010
-ctr_020,Advertising data integration,2025-03-01,2025-07-31,EUR,Active,cst_010
+b7a42c10-2a01-4f21-b001-000000000001,Enterprise support contract,2025-01-01,2025-12-31,EUR,Active,9a3b61c1-1c01-4e11-a001-000000000001
+b7a42c10-2a02-4f21-b002-000000000002,Cloud migration services,2025-03-01,2025-09-30,USD,Active,9a3b61c1-1c01-4e11-a001-000000000001
+b7a42c10-2a03-4f21-b003-000000000003,Application maintenance,2024-06-01,2025-05-31,EUR,Inactive,9a3b61c1-1c02-4e11-a002-000000000002
+b7a42c10-2a04-4f21-b004-000000000004,Data analytics rollout,2025-02-01,2025-11-30,USD,Active,9a3b61c1-1c02-4e11-a002-000000000002
+b7a42c10-2a05-4f21-b005-000000000005,ERP implementation,2025-01-15,2026-01-14,EUR,Active,9a3b61c1-1c03-4e11-a003-000000000003
+b7a42c10-2a06-4f21-b006-000000000006,Retail POS modernization,2024-10-01,2025-09-30,USD,Inactive,9a3b61c1-1c03-4e11-a003-000000000003
+b7a42c10-2a07-4f21-b007-000000000007,IoT platform development,2025-04-01,2025-12-31,EUR,Active,9a3b61c1-1c04-4e11-a004-000000000004
+b7a42c10-2a08-4f21-b008-000000000008,Security audit program,2025-02-01,2025-04-30,EUR,Inactive,9a3b61c1-1c04-4e11-a004-000000000004
+b7a42c10-2a09-4f21-b009-000000000009,Logistics optimization project,2025-01-01,2025-10-31,EUR,Active,9a3b61c1-1c05-4e11-a005-000000000005
+b7a42c10-2a10-4f21-b010-000000000010,Fleet tracking system,2025-05-01,2025-12-31,EUR,Draft,9a3b61c1-1c05-4e11-a005-000000000005
+b7a42c10-2a11-4f21-b011-000000000011,Hospital system integration,2025-01-01,2025-12-31,EUR,Active,9a3b61c1-1c06-4e11-a006-000000000006
+b7a42c10-2a12-4f21-b012-000000000012,Patient data migration,2025-03-01,2025-08-31,EUR,Active,9a3b61c1-1c06-4e11-a006-000000000006
+b7a42c10-2a13-4f21-b013-000000000013,Core banking upgrade,2025-01-01,2026-06-30,EUR,Active,9a3b61c1-1c07-4e11-a007-000000000007
+b7a42c10-2a14-4f21-b014-000000000014,Regulatory compliance project,2025-02-15,2025-12-15,EUR,Active,9a3b61c1-1c07-4e11-a007-000000000007
+b7a42c10-2a15-4f21-b015-000000000015,5G network expansion,2025-01-01,2025-12-31,EUR,Active,9a3b61c1-1c08-4e11-a008-000000000008
+b7a42c10-2a16-4f21-b016-000000000016,Customer billing transformation,2025-04-01,2025-09-30,EUR,Draft,9a3b61c1-1c08-4e11-a008-000000000008
+b7a42c10-2a17-4f21-b017-000000000017,Factory automation rollout,2025-02-01,2025-11-30,EUR,Active,9a3b61c1-1c09-4e11-a009-000000000009
+b7a42c10-2a18-4f21-b018-000000000018,Supply chain analytics,2024-09-01,2025-06-30,EUR,Inactive,9a3b61c1-1c09-4e11-a009-000000000009
+b7a42c10-2a19-4f21-b019-000000000019,Content management platform,2025-01-15,2025-10-15,EUR,Active,9a3b61c1-1c10-4e11-a010-000000000010
+b7a42c10-2a20-4f21-b020-000000000020,Advertising data integration,2025-03-01,2025-07-31,EUR,Active,9a3b61c1-1c10-4e11-a010-000000000010

@@ -2,14 +2,16 @@ using {cuid} from '@sap/cds/common';
 
 namespace sap.phaseManagement;
 
-entity Customers : cuid {
+entity Customers {
+      key ID        : UUID;
       name          : String                       @mandatory;
       accountNumber : String                       @unique;
       contracts     : Composition of many Contracts
                         on contracts.customer = $self;
 }
 
-entity Contracts : cuid {
+entity Contracts {
+      key ID      : UUID;
       description : String;
       startDate   : Date;
       endDate     : Date;
@@ -20,7 +22,8 @@ entity Contracts : cuid {
                         on phases.contract = $self;
 }
 
-entity Phases : cuid {
+entity Phases {
+      key ID       : UUID;
       name         : String                       @mandatory;
       startDate    : Date                         @mandatory;
       endDate      : Date                         @mandatory;

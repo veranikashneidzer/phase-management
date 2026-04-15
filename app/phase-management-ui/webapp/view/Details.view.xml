@@ -8,15 +8,93 @@
 	xmlns:l="sap.ui.layout">
 	<semantic:SemanticPage
 		id="detailPage"
-		showFooter="{= ${oDetailConfigModel>/isEditMode} || ${oDetailConfigModel>/isOrderCreation} }"
-		>
+		showFooter="{= ${oDetailConfigModel>/isEditMode} || ${oDetailConfigModel>/isContractCreation} }"
+		core:require="{
+			Formatter: 'phasemanagementui/model/formatter'
+		}">
 		<semantic:titleHeading>
 			<Title
-                id="orderTitle"
-				text="{= ${oDetailConfigModel>/isOrderCreation} ? ${i18n>addNewOrder} : 'Order ' + ${DataV2>OrderID}}"/>
+				text="{= ${oDetailConfigModel>/isContractCreation} ? ${i18n>addNewContract} : ${DataModel>description}}"/>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-
+			<l:HorizontalLayout id="headerContent">
+				<l:VerticalLayout class="sapUiMediumMarginEnd">
+					<Input
+						value="{DataModel>description}" 
+						visible="{oDetailConfigModel>/isEditMode}" 
+						required="true"
+						valueStateText="{i18n>validationError}"
+						liveChange=".onControlChanged"
+						placeholder="{i18n>description}"/>
+					<ObjectAttribute
+						title="{i18n>startDate}"
+						visible="{= !${oDetailConfigModel>/isEditMode}}"
+						text="{
+							path: 'DataModel>startDate',
+							formatter: 'Formatter.formatDate'
+						}" />
+					<DatePicker
+						placeholder="{i18n>startDate}" 
+						visible="{oDetailConfigModel>/isEditMode}"
+						displayFormat="dd-MM-yyyy" 
+						valueFormat="yyyy-MM-dd" 
+						value="{
+							path: 'DataModel>startDate',
+							type: 'sap.ui.model.type.Date'
+						}"
+						valueStateText="{i18n>validationError}"
+						liveChange=".onControlChanged"
+						required="true" 
+						/>
+					<ObjectAttribute
+						title="{i18n>endDate}"
+						visible="{= !${oDetailConfigModel>/isEditMode}}"
+						text="{
+							path: 'DataModel>endDate',
+							formatter: 'Formatter.formatDate'
+						}" />
+					<DatePicker
+						placeholder="{i18n>endDate}" 
+						visible="{oDetailConfigModel>/isEditMode}"
+						displayFormat="dd-MM-yyyy" 
+						valueFormat="yyyy-MM-dd" 
+						value="{
+							path: 'DataModel>endDate',
+							type: 'sap.ui.model.type.Date'
+						}"
+						valueStateText="{i18n>validationError}"
+						liveChange=".onControlChanged"
+						required="true" 
+						/>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label
+						visible="{= !${oDetailConfigModel>/isEditMode}}"
+						text="{= ${i18n>currency} + ': ' + ${DataModel>currency} }" />
+					<ComboBox
+						selectedKey="EUR"
+						visible="{oDetailConfigModel>/isEditMode}"
+                        selectionChange=".onSelectCurrency"
+					>
+						<core:Item key="EUR" text="EUR" />
+						<core:Item key="USD" text="USD" />
+						<core:Item key="RUB" text="RUB" />
+						<core:Item key="BYN" text="BYN" />
+					</ComboBox>
+					<Label
+						visible="{= !${oDetailConfigModel>/isEditMode}}"
+						text="{= ${i18n>status} + ': ' + ${DataModel>status} }" />
+					<ComboBox
+						selectedKey="EUR"
+						visible="{oDetailConfigModel>/isEditMode}"
+                        selectionChange=".onSelectCurrency"
+					>
+						<core:Item key="Available" text="{i18n>available}" />
+						<core:Item key="Inavailable" text="{i18n>inavailable}" />
+						<core:Item key="Draft" text="{i18n>draft}" />
+					</ComboBox>
+				</l:VerticalLayout>
+			</l:HorizontalLayout>
 		</semantic:headerContent>
 		<semantic:content>
 
@@ -24,22 +102,17 @@
 
 		<semantic:deleteAction>
 			<semantic:DeleteAction
-				press=".onDeleteOrder"/>
+				press=".onDeleteContract"/>
 		</semantic:deleteAction>
 		<semantic:editAction>
 			<semantic:EditAction
 				visible="{= !${oDetailConfigModel>/isEditMode}}"
-				press=".onEditOrder"/>
+				press=".onEditContract"/>
 		</semantic:editAction>
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction
-				id="shareEmail"
-				press=".onSendEmail"/>
-		</semantic:sendEmailAction>
 		<semantic:closeAction>
 			<semantic:CloseAction
 				id="closeColumn"
-				press=".onCloseOrder"/>
+				press=".onCloseContract"/>
 		</semantic:closeAction>
 
 		<semantic:footerCustomActions>
