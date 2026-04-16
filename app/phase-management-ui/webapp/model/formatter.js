@@ -25,6 +25,13 @@ sap.ui.define([
 
 		formatDate(sDate) {
 			return this.formatDateByPattern(sDate, "dd MMMM yyyy");
-		}
+		},
+
+		calculateTotalPrice(dStartDate, dEndDate, fMonthlyPrice) {
+			const oStartDate = (new Date(dStartDate)).getFullYear();
+			const oEndDate = (new Date(dEndDate)).getFullYear();
+			const iMonths = (oEndDate - oStartDate) * 12 + ( (new Date(dEndDate)).getMonth() - (new Date(dStartDate)).getMonth() ) + 1;
+			return iMonths * `${fMonthlyPrice}`.replace(',', '');
+		},
 	};
 });

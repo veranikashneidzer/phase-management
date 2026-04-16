@@ -123,7 +123,78 @@
 			</l:HorizontalLayout>
 		</semantic:headerContent>
 		<semantic:content>
-
+			<Table
+				id="phasesTable"
+				items="{DataModel>phases}"
+				growing="true"
+				growingScrollToLoad="true">
+				<OverflowToolbar id="otbSubheadeV4">
+					<Title text="{i18n>phasesTableHeader}" level="H2" />
+					<ToolbarSpacer/>
+					<Button
+						text="{i18n>buttonAdd}"
+						class="sapUiTinyMarginEnd"
+						press=".onOpenProductV4DataCreateDialog">
+					</Button>
+					<Button
+						text="{i18n>buttonDelete}"
+						class="sapUiTinyMarginEnd"
+						enabled="{= !!${configModel>/isDeleteButtonEnabled}}"
+						press=".onOpenProductsV4DeleteConfirmationDialog">
+					</Button>
+					<Button
+						text="{i18n>buttonEdit}"
+						press=".onOpenProductV4DataCreateDialog">
+					</Button>
+				</OverflowToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>name}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>startDate}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>endDate}"/>
+					</Column>
+					<Column hAlign="End">
+						<Text text="{i18n>monthlyPrice}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>description}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>totalPrice}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+						<Text
+							text="{DataModel>name}"/>
+						<Text
+							text="{
+								path: 'DataModel>startDate',
+								formatter: 'Formatter.formatDate'
+							}"/>
+						<Text 
+							text="{
+								path: 'DataModel>endDate',
+								formatter: 'Formatter.formatDate'
+							}"/>
+						<Text
+							text="{DataModel>monthlyPrice}"/>
+						<Text
+							text="{DataModel>totalPrice}"/>
+						<Text
+							text="{
+								parts: ['DataModel>startDate', 'DataModel>endDate', 'DataModel>monthlyPrice'],
+								formatter: 'Formatter.calculateTotalPrice'
+							}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
 		</semantic:content>
 
 		<semantic:deleteAction>
