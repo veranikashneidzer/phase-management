@@ -13,11 +13,7 @@
 				width="auto"
 				items="{
 					path: 'DataModel>/Contracts',
-					parameters: {expand: 'Customer,Phases'},
-					sorter: {
-						path: 'DataModel>ID',
-						descending: true
-					}
+					parameters: {expand: 'Customer,Phases'}
 				}">
 				<headerToolbar>
 					<OverflowToolbar>
@@ -57,7 +53,6 @@
 						title="{DataModel>description}"
 						number="{DataModel>currency}"
 						type="Navigation"
-						key="{DataModel>ID}"
 						press=".onSelectContract"
 						core:require="{
 							Formatter: 'phasemanagementui/model/formatter'

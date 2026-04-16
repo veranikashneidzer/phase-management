@@ -270,51 +270,44 @@ sap.ui.define([
     },
 
     // setInitialControlsValueState() {
-    //   const aControls = this.oProductV4DataCreateEditDialog.getContent()[0].getItems();
+    //   const aControls = this.PhaseChangingDialog.getContent()[0].getItems();
 
     //   aControls.forEach((oControl) => {
     //     oControl.setValueState("None");
     //   });
     // },
 
-    // async _onOpenPhaseDataCreateEditDialog(oSource = {}, bIsCreate = true) {
-    //   let oContext = {};
+  //   async _onOpenPhaseDataCreateEditDialog(oSource = null, bIsCreate = true) {
+  //   let oContext = {};
 
-    //   try {
-    //     if (!this._oPopover) {
-    //       this._oPopover = sap.ui.xmlfragment(
-    //         this.getView().getId(),
-    //         "phasemanagementui.view.fragments.PhaseEditingPopover",
-    //         this
-    //       );
-    //       this.getView().addDependent(this._oPopover);
-    //     }
+  //     try {
+  //       if (!this.PhaseChangingDialog) {
+  //         this.PhaseChangingDialog ??= await this.loadFragment({
+  //           name: "phasemanagementui.view.fragments.PhaseChangingDialog",
+  //           id: 'productCreationV4Dialog',
+  //         });
+  //       }
 
-    //     if (bIsCreate) {
-    //       const oList = this.byId("phasesTable");
-    //       oList.removeSelections();
+  //       if (bIsCreate) {
+  //         const oList = this.byId("phasesTable");
+  //         oList.removeSelections();
 
-    //       oContext = this.oDataModel.bindList("/Phases").create(null, true);
-    //       oContext.oCreatedPromise.catch((oError) => {
-    //         if (!oError.canceled) {
-    //           Log.error(oError.message);
-    //         }
-    //       });
-    //     } else {
-    //       oContext = oSource.getParent().getBindingContext("DataModel");
-    //     }
+  //         oContext = this.oDataV4Model.bindList("/Phases").create(null, true);
+  //       } else {
+  //         oContext = oSource.getParent().getBindingContext("DataModel");
+  //       }
 
-    //     this._oPopover.setBindingContext(oContext, "DataModel");
-    //     this._oPopover.openBy(oSource);
+  //       this.PhaseChangingDialog.setBindingContext(oContext, "DataModel");
 
-    //     this.oDetailConfigModel.setProperty('/buttonSubmitText', this.oBundle.getText(bIsCreate ? "dialogAddButtonText" : "dialogSaveButtonText"));
-    //     this.oDetailConfigModel.setProperty('/headerText', this.oBundle.getText(bIsCreate ? "phaseCreationDialogHeaderText" : "phaseEditDialogHeaderText"));
-        
-    //     this.setInitialControlsValueState();
-    //   } catch {
-    //     Log.error("Cannot load product create dialog");
-    //   }
-    // },
+  //       this.oDetailConfigModel.setProperty('/buttonSubmitText', this.oBundle.getText(bIsCreate ? "dialogAddButtonText" : "dialogSaveButtonText"));
+  //       this.oDetailConfigModel.setProperty('/headerText', this.oBundle.getText(bIsCreate ? "phaseCreationDialogHeaderText" : "phaseEditDialogHeaderText"));
+       
+  //       this.setInitialControlsValueState();
+  //       this.PhaseChangingDialog.open();
+  //     } catch {
+  //       Log.error("Cannot load phase change dialog");
+  //     }
+  // },
 
     // async onEditPhaseInContract(oEvent) {
     //   const oList = this.byId("phasesTable");
@@ -329,7 +322,7 @@ sap.ui.define([
     // },
 
     // onAddPhaseToContract() {
-    //   this._onOpenPhaseDataCreateEditDialog({}, true);
+    //   this._onOpenPhaseDataCreateEditDialog(null, true);
     // },
 
     // async onSubmitPhaseChanging() {

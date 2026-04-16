@@ -141,7 +141,6 @@
 						<Button
 							text="{i18n>buttonDelete}"
 							class="sapUiTinyMarginEnd"
-							enabled="{= !!${configModel>/isDeleteButtonEnabled}}"
 							press=".onDeletePhaseFromContract">
 						</Button>
 						<!-- <Button
