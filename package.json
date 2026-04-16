@@ -11,15 +11,20 @@
     "express": "^4"
   },
   "devDependencies": {
-    "sqlite3": "^5.1.6",
-    "cds-plugin-ui5": "^0.13.0"
+    "cds-plugin-ui5": "^0.13.0",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
+    "sqlite3": "^5.1.6"
   },
   "scripts": {
     "start": "cds-serve",
     "watch": "cds watch",
     "deploy": "cds deploy",
     "watch:debug": "node --inspect=9229 ./node_modules/@sap/cds/bin/cds.js watch",
-    "watch-phase-management-ui": "cds watch --open phasemanagementui/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-phase-management-ui": "cds watch --open phasemanagementui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "test": "jest",
+    "test:watch": "jest --watch"
+
   },
   "workspaces": [
     "app/*"

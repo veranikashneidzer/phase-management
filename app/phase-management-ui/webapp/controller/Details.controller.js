@@ -239,7 +239,7 @@ sap.ui.define([
 
         await this.oDataModel.submitBatch("defferedGroup");
 
-        const sSuccessMsg = this.oBundle.getText(oList.getSelectedItems().length > 1 ? "deletionSuccessMessagePlural" : "deletionSuccessMessage");
+        const sSuccessMsg = this.oBundle.getText(oList.getSelectedItems().length > 1 ? "phasesDeletionSuccessMessagePlural" : "phasesDeletionSuccessMessageSingular");
         MessageToast.show(sSuccessMsg);
       } catch {
         const sErrorMsg = this.oBundle.getText("deletionPhaseErrorMessage");
@@ -251,15 +251,22 @@ sap.ui.define([
 
     onDeletePhaseFromContract() {
       const oBundle = this.getView().getModel("i18n").getResourceBundle();
+      const oList = this.byId("phasesTable");
+      const aPhases = oList.getSelectedItems();
 
-      MessageBox.confirm(oBundle.getText("productsDeleteConfirmationDialogText"), {
-        actions: [MessageBox.Action.YES, MessageBox.Action.CLOSE],
-        onClose: (sAction) => {
-          if (sAction === MessageBox.Action.YES) {
-            this.onDeletePhases();
-          }
-        },
-      });
+      if (aPhases.length === 0 || aPhases.length > 1) {
+        const sErrorMsg = this.oBundle.getText("editPhaseAmountErrorMessage");
+        MessageBox.error(sErrorMsg)
+      } else {
+        MessageBox.confirm(oBundle.getText("productsDeleteConfirmationDialogText"), {
+          actions: [MessageBox.Action.YES, MessageBox.Action.CLOSE],
+          onClose: (sAction) => {
+            if (sAction === MessageBox.Action.YES) {
+              this.onDeletePhases();
+            }
+          },
+        });
+      }
     },
 
     // setInitialControlsValueState() {
