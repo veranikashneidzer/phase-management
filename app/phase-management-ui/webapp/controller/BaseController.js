@@ -4,6 +4,5 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("phasemanagementui.controller.BaseController", {
-
     });
 });

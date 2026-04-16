@@ -21,6 +21,7 @@
 				<l:VerticalLayout class="sapUiMediumMarginEnd">
 					<Input
 						value="{DataModel>description}" 
+						id="descriptionControl"
 						visible="{oDetailConfigModel>/isEditMode}" 
 						required="true"
 						valueStateText="{i18n>validationError}"
@@ -35,12 +36,13 @@
 						}" />
 					<DatePicker
 						placeholder="{i18n>startDate}" 
+						id="startDateControl"
 						visible="{oDetailConfigModel>/isEditMode}"
 						displayFormat="dd-MM-yyyy" 
 						valueFormat="yyyy-MM-dd" 
 						value="{
 							path: 'DataModel>startDate',
-							type: 'sap.ui.model.type.Date'
+							formatter: 'Formatter.formatDate'
 						}"
 						valueStateText="{i18n>validationError}"
 						liveChange=".onControlChanged"
@@ -55,12 +57,13 @@
 						}" />
 					<DatePicker
 						placeholder="{i18n>endDate}" 
+						id="endDateControl"
 						visible="{oDetailConfigModel>/isEditMode}"
 						displayFormat="dd-MM-yyyy" 
 						valueFormat="yyyy-MM-dd" 
 						value="{
 							path: 'DataModel>endDate',
-							type: 'sap.ui.model.type.Date'
+							formatter: 'Formatter.formatDate'
 						}"
 						valueStateText="{i18n>validationError}"
 						liveChange=".onControlChanged"
@@ -72,9 +75,9 @@
 						visible="{= !${oDetailConfigModel>/isEditMode}}"
 						text="{= ${i18n>currency} + ': ' + ${DataModel>currency} }" />
 					<ComboBox
-						selectedKey="EUR"
+						selectedKey="{DataModel>currency}"
+						id="currencyControl"
 						visible="{oDetailConfigModel>/isEditMode}"
-                        selectionChange=".onSelectCurrency"
 					>
 						<core:Item key="EUR" text="EUR" />
 						<core:Item key="USD" text="USD" />
@@ -83,14 +86,15 @@
 					</ComboBox>
 					<Label
 						visible="{= !${oDetailConfigModel>/isEditMode}}"
+						id="status"
 						text="{= ${i18n>status} + ': ' + ${DataModel>status} }" />
 					<ComboBox
-						selectedKey="EUR"
+						selectedKey="{DataModel>status}"
+						id="statusControl"
 						visible="{oDetailConfigModel>/isEditMode}"
-                        selectionChange=".onSelectCurrency"
 					>
-						<core:Item key="Available" text="{i18n>available}" />
-						<core:Item key="Inavailable" text="{i18n>inavailable}" />
+						<core:Item key="Active" text="{i18n>active}" />
+						<core:Item key="Inactive" text="{i18n>inactive}" />
 						<core:Item key="Draft" text="{i18n>draft}" />
 					</ComboBox>
 				</l:VerticalLayout>

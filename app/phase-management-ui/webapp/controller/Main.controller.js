@@ -55,7 +55,7 @@ sap.ui.define([
     },
 
     onSearchContracts(oEvent) {
-      const sQuery = oEvent?.getSource()?.getValue();
+      const sQuery = oEvent.getSource().getValue?.();
       const oBinding = this.byId("contractsList").getBinding("items");
       const aFilters = sQuery ? [
         new Filter("description", FilterOperator.Contains, sQuery)
@@ -110,7 +110,7 @@ sap.ui.define([
         oBinding.sort([]);
       }
 
-      // this.onSearchContracts(oEvent);
+      this.onSearchContracts(oEvent);
     },
 
     onSelectContract(oEvent) {

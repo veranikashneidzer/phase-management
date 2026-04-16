@@ -17,10 +17,14 @@ sap.ui.define([
 			}
 		},
 
-		formatDate(sDate) {
-			const oDateFormat = DateFormat.getInstance({pattern: "dd MMMM yyyy"});
+		formatDateByPattern(sDate, sPattern) {
+			const oDateFormat = DateFormat.getInstance({pattern: sPattern});
 			const sFormattedDate = UI5Date.getInstance(sDate);
 			return oDateFormat.format(sFormattedDate);
+		},
+
+		formatDate(sDate) {
+			return this.formatDateByPattern(sDate, "dd MMMM yyyy");
 		}
 	};
 });
