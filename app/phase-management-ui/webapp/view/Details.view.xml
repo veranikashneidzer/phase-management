@@ -69,8 +69,6 @@
 						liveChange=".onControlChanged"
 						required="true" 
 						/>
-				</l:VerticalLayout>
-				<l:VerticalLayout>
 					<Label
 						visible="{= !${oDetailConfigModel>/isEditMode}}"
 						text="{= ${i18n>currency} + ': ' + ${DataModel>currency} }" />
@@ -97,6 +95,30 @@
 						<core:Item key="Inactive" text="{i18n>inactive}" />
 						<core:Item key="Draft" text="{i18n>draft}" />
 					</ComboBox>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label
+						visible="{= !${oDetailConfigModel>/isEditMode}}"
+						text="{= ${i18n>customerName} + ': ' + ${DataModel>customer/name} }" />
+					<Input
+						value="{DataModel>customer/name}" 
+						id="customerNameControl"
+						visible="{oDetailConfigModel>/isEditMode}" 
+						required="true"
+						valueStateText="{i18n>validationError}"
+						liveChange=".onControlChanged"
+						placeholder="{i18n>customerName}"/>
+					<Label
+						visible="{= !${oDetailConfigModel>/isEditMode}}"
+						text="{= ${i18n>customerAccountNumber} + ': ' + ${DataModel>customer/accountNumber} }" />
+					<Input
+						value="{DataModel>customer/accountNumber}" 
+						id="customerAccountNumberControl"
+						visible="{oDetailConfigModel>/isEditMode}" 
+						required="true"
+						valueStateText="{i18n>validationError}"
+						liveChange=".onControlChanged"
+						placeholder="{i18n>customerAccountNumber}"/>
 				</l:VerticalLayout>
 			</l:HorizontalLayout>
 		</semantic:headerContent>

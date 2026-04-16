@@ -13,6 +13,7 @@
 				width="auto"
 				items="{
 					path: 'DataModel>/Contracts',
+					parameters: {expand: 'Customer,Phases'},
 					sorter: {
 						path: 'DataModel>ID',
 						descending: true
