@@ -23,7 +23,7 @@ sap.ui.define([
 
       const oDetailConfigModel = new JSONModel({
         isContractCreation: false,
-        isEditMode: false
+        isEditMode: false,
       });
 
       this.getView().setModel(oDetailConfigModel, "oDetailConfigModel");
@@ -125,11 +125,22 @@ sap.ui.define([
         if (bIsCreate) {
           const sSuccessMsg = this.oBundle.getText("createSuccessMessage");
           const sErrorMsg = this.oBundle.getText("createErrorMessage");
+          const sStartDateErrorMsg = this.oBundle.getText("startDateShouldBeEarlierThanEndDate");
+
+          const startDate = formatter.formatDateByPattern(this.byId("startDateControl").getDateValue(), "yyyy-MM-dd");
+          const endDate = formatter.formatDateByPattern(this.byId("endDateControl").getDateValue(), "yyyy-MM-dd");
+          const startDateInMiliseconds = (new Date(startDate)).getTime();
+          const endDateYearInMiliseconds = (new Date(endDate)).getTime();
+
+          if (startDateInMiliseconds > endDateYearInMiliseconds) {
+            MessageBox.error(sStartDateErrorMsg);
+            return;
+          }
 
           const oNewEntry = {
             description: this.byId("descriptionControl").getValue(),
-            startDate: formatter.formatDateByPattern(this.byId("startDateControl").getDateValue(), "yyyy-MM-dd"),
-            endDate: formatter.formatDateByPattern(this.byId("endDateControl").getDateValue(), "yyyy-MM-dd"),
+            startDate,
+            endDate,
             currency: this.byId("currencyControl").getSelectedKey(),
             status: this.byId("statusControl").getSelectedKey()
           };
@@ -217,6 +228,128 @@ sap.ui.define([
           isEditMode: true
         }
       });
-    }
+    },
+
+    async onDeletePhases() {
+      const oList = this.byId("phasesTable");
+      const aPhasesContexts = oList.getSelectedItems().map((item) => item.getBindingContext("DataModel"));
+
+      try {
+        aPhasesContexts.forEach((product) => product.delete("defferedGroup"));
+
+        await this.oDataModel.submitBatch("defferedGroup");
+
+        const sSuccessMsg = this.oBundle.getText(oList.getSelectedItems().length > 1 ? "deletionSuccessMessagePlural" : "deletionSuccessMessage");
+        MessageToast.show(sSuccessMsg);
+      } catch {
+        const sErrorMsg = this.oBundle.getText("deletionPhaseErrorMessage");
+        MessageBox.error(sErrorMsg)
+      }
+
+      oList.removeSelections();
+    },
+
+    onDeletePhaseFromContract() {
+      const oBundle = this.getView().getModel("i18n").getResourceBundle();
+
+      MessageBox.confirm(oBundle.getText("productsDeleteConfirmationDialogText"), {
+        actions: [MessageBox.Action.YES, MessageBox.Action.CLOSE],
+        onClose: (sAction) => {
+          if (sAction === MessageBox.Action.YES) {
+            this.onDeletePhases();
+          }
+        },
+      });
+    },
+
+    // setInitialControlsValueState() {
+    //   const aControls = this.oProductV4DataCreateEditDialog.getContent()[0].getItems();
+
+    //   aControls.forEach((oControl) => {
+    //     oControl.setValueState("None");
+    //   });
+    // },
+
+    // async _onOpenPhaseDataCreateEditDialog(oSource = {}, bIsCreate = true) {
+    //   let oContext = {};
+
+    //   try {
+    //     if (!this._oPopover) {
+    //       this._oPopover = sap.ui.xmlfragment(
+    //         this.getView().getId(),
+    //         "phasemanagementui.view.fragments.PhaseEditingPopover",
+    //         this
+    //       );
+    //       this.getView().addDependent(this._oPopover);
+    //     }
+
+    //     if (bIsCreate) {
+    //       const oList = this.byId("phasesTable");
+    //       oList.removeSelections();
+
+    //       oContext = this.oDataModel.bindList("/Phases").create(null, true);
+    //       oContext.oCreatedPromise.catch((oError) => {
+    //         if (!oError.canceled) {
+    //           Log.error(oError.message);
+    //         }
+    //       });
+    //     } else {
+    //       oContext = oSource.getParent().getBindingContext("DataModel");
+    //     }
+
+    //     this._oPopover.setBindingContext(oContext, "DataModel");
+    //     this._oPopover.openBy(oSource);
+
+    //     this.oDetailConfigModel.setProperty('/buttonSubmitText', this.oBundle.getText(bIsCreate ? "dialogAddButtonText" : "dialogSaveButtonText"));
+    //     this.oDetailConfigModel.setProperty('/headerText', this.oBundle.getText(bIsCreate ? "phaseCreationDialogHeaderText" : "phaseEditDialogHeaderText"));
+        
+    //     this.setInitialControlsValueState();
+    //   } catch {
+    //     Log.error("Cannot load product create dialog");
+    //   }
+    // },
+
+    // async onEditPhaseInContract(oEvent) {
+    //   const oList = this.byId("phasesTable");
+    //   const aPhases = oList.getSelectedItems()
+
+    //   if (aPhases.length === 0 || aPhases.length > 1) {
+    //     const sErrorMsg = this.oBundle.getText("editPhaseAmountErrorMessage");
+    //     MessageBox.error(sErrorMsg)
+    //   } else {
+    //     this._onOpenPhaseDataCreateEditDialog(oEvent.getSource(), false);
+    //   }
+    // },
+
+    // onAddPhaseToContract() {
+    //   this._onOpenPhaseDataCreateEditDialog({}, true);
+    // },
+
+    // async onSubmitPhaseChanging() {
+    //   const sText = oEvent.getSource().getText();
+    //   const bIsCreate = sText === this.oBundle.getText("dialogAddButtonText");
+
+    //   if (!this.validateForm()) {
+    //     return;
+    //   }
+
+    //   const sSuccessMsg = this.oBundle.getText(bIsCreate ? "createPhaseSuccessMessage" : "editPhaseSuccessMessage");
+    //   const sErrorMsg = this.oBundle.getText(bIsCreate ? "createPhaseErrorMessage" : "editPhaseErrorMessage");
+
+    //   try {
+    //     await this.oDataV4Model.submitBatch("defferedGroup");
+    //     MessageToast.show(sSuccessMsg);
+    //     this.oProductV4DataCreateEditDialog.close();
+
+    //     this.byId("productsListV4").getBinding("items").refresh();
+    //   } catch {
+    //     MessageBox.error(sErrorMsg);
+    //   }
+    // },
+
+    // onCancelPhaseChanging() {
+    //   this.PhaseCreateEditDialog.close();
+    //   this.oDataModel.resetChanges();
+    // }
   });
 });

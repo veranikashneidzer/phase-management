@@ -126,27 +126,30 @@
 			<Table
 				id="phasesTable"
 				items="{DataModel>phases}"
+				mode="MultiSelect"
 				growing="true"
 				growingScrollToLoad="true">
-				<OverflowToolbar id="otbSubheadeV4">
-					<Title text="{i18n>phasesTableHeader}" level="H2" />
-					<ToolbarSpacer/>
-					<Button
-						text="{i18n>buttonAdd}"
-						class="sapUiTinyMarginEnd"
-						press=".onOpenProductV4DataCreateDialog">
-					</Button>
-					<Button
-						text="{i18n>buttonDelete}"
-						class="sapUiTinyMarginEnd"
-						enabled="{= !!${configModel>/isDeleteButtonEnabled}}"
-						press=".onOpenProductsV4DeleteConfirmationDialog">
-					</Button>
-					<Button
-						text="{i18n>buttonEdit}"
-						press=".onOpenProductV4DataCreateDialog">
-					</Button>
-				</OverflowToolbar>
+				<headerToolbar>
+					<OverflowToolbar id="otbSubheadeV4">
+						<Title text="{i18n>phasesTableHeader}" level="H2" />
+						<ToolbarSpacer/>
+						<!-- <Button
+							text="{i18n>buttonAdd}"
+							class="sapUiTinyMarginEnd"
+							press=".onAddPhaseToContract">
+						</Button> -->
+						<Button
+							text="{i18n>buttonDelete}"
+							class="sapUiTinyMarginEnd"
+							enabled="{= !!${configModel>/isDeleteButtonEnabled}}"
+							press=".onDeletePhaseFromContract">
+						</Button>
+						<!-- <Button
+							text="{i18n>buttonEdit}"
+							press=".onEditPhaseInContract">
+						</Button> -->
+					</OverflowToolbar>
+				</headerToolbar>
 				<columns>
 					<Column>
 						<Text text="{i18n>name}"/>
@@ -185,7 +188,7 @@
 						<Text
 							text="{DataModel>monthlyPrice}"/>
 						<Text
-							text="{DataModel>totalPrice}"/>
+							text="{DataModel>description}"/>
 						<Text
 							text="{
 								parts: ['DataModel>startDate', 'DataModel>endDate', 'DataModel>monthlyPrice'],
